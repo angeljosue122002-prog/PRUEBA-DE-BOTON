@@ -1,31 +1,66 @@
-# PRUEBA-DE-BOTON
-<style>
-  .boton-magico {
-    cursor: pointer; /* Indispensable para iOS */
-    touch-action: manipulation; /* Mejora la respuesta al toque */
-    -webkit-tap-highlight-color: transparent; /* Quita el cuadro feo al tocar */
-    /* Aquí puedes poner el resto de tu diseño (colores, bordes, etc.) */
-    padding: 15px 30px;
-    background-color: #ff4d6d;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 18px;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Luz Eterna ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #ffebee, #ffcdd2); /* Fondo degradado suave */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Para las animaciones de corazones */
+            position: relative;
+        }
 
-<button class="boton-magico" onclick="mostrarSorpresa()">
-  ¡Tócame, mi amor! 🌹
-</button>
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 90%;
+            margin: 20px;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
+            position: relative;
+            z-index: 10;
+        }
 
-<script>
-  function mostrarSorpresa() {
-    // Usamos un alert simple primero para probar si funciona
-    alert("¡Te amo muchísimo! ❤️"); 
-    
-    // Aquí puedes poner lo que quieres que pase, por ejemplo:
-    // document.getElementById('tu-seccion-oculta').style.display = 'block';
-    
-    console.log("El botón fue presionado en iPhone");
-  }
-</script>
+        .container.hidden {
+            transform: translateY(-50px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        h1 {
+            color: #d81b60; /* Rosa intenso */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 0.5s;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 1.5s;
+        }
+
+        .boton-magico {
+            cursor: pointer; /* ESENCIAL para iOS */
+            touch-action: manipulation; /* Mejora la respuesta al toque en móviles */
+            -webkit-tap-highlight-color: transparent; /* Quita el recuadro gris al tocar en iOS */
+            padding: 18px 35px;
+            background-image: linear-gradient(to right, #e91e63, #d81b60); /* Degradado en el botón */
+            color: white
+          
