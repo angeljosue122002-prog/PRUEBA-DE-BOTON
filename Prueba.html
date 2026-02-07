@@ -62,5 +62,144 @@
             -webkit-tap-highlight-color: transparent; /* Quita el recuadro gris al tocar en iOS */
             padding: 18px 35px;
             background-image: linear-gradient(to right, #e91e63, #d81b60); /* Degradado en el botón */
-            color: white
-          
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 15px rgba(216, 27, 96, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            display: inline-block; /* Para que el shadow se vea bien */
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 2.5s;
+        }
+
+        .boton-magico:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(216, 27, 96, 0.6);
+        }
+
+        /* Efecto al hacer click en el botón */
+        .boton-magico:active {
+            transform: translateY(1px);
+        }
+
+        /* Mensaje de amor oculto */
+        #mensaje-secreto {
+            display: none;
+            margin-top: 30px;
+            font-size: 1.3em;
+            color: #d81b60;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        /* Animación de entrada general */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Animación de corazones flotantes */
+        .heart {
+            position: absolute;
+            background-color: #ff4d6d;
+            transform: rotate(-45deg);
+            animation: floatHeart 10s infinite ease-in;
+            opacity: 0;
+            z-index: 1;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ff4d6d;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -50%;
+            left: 0;
+        }
+        .heart::after {
+            left: 50%;
+            top: 0;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(-45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-content">
+        <h1>Para mi amor, mi luz, mi todo... ❤️</h1>
+        <p>
+            Mi niña hermosa, cada día contigo es un regalo que valoro más que nada en este mundo. 
+            Quiero que sepas que eres mi inspiración, mi calma en la tormenta y la risa más bonita que he escuchado. 
+            Siempre estaré aquí para ti, en cada paso, en cada sueño, apoyándote y amándote con cada fibra de mi ser. 
+            Eres el sueño más bonito hecho realidad. ✨
+        </p>
+        <button class="boton-magico" onclick="revelarMensaje()">
+            ¡Toca aquí para un beso! 😘
+        </button>
+
+        <p id="mensaje-secreto">
+            ¡Y para recordarte que eres la persona más increíble que conozco! Te amo, te admiro y te cuidaré siempre.
+        </p>
+    </div>
+
+    <script>
+        function revelarMensaje() {
+            const boton = document.querySelector('.boton-magico');
+            const mensajeSecreto = document.getElementById('mensaje-secreto');
+            
+            // Oculta el botón
+            boton.style.display = 'none';
+            
+            // Muestra el mensaje secreto con animación
+            mensajeSecreto.style.display = 'block';
+            setTimeout(() => {
+                mensajeSecreto.style.opacity = '1';
+            }, 50); // Pequeño retraso para que la transición de opacidad funcione
+
+            // Animación de corazones al click
+            for (let i = 0; i < 15; i++) {
+                crearCorazon();
+            }
+        }
+
+        function crearCorazon() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.width = Math.random() * 20 + 10 + 'px'; // Tamaño aleatorio
+            heart.style.height = heart.style.width;
+            heart.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's'; // Duración de animación aleatoria
+            heart.style.animationDelay = Math.random() * 5 + 's'; // Retraso aleatorio
+            document.body.appendChild(heart);
+
+            // Eliminar el corazón después de su animación para no sobrecargar el DOM
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Crear algunos corazones flotantes de fondo al cargar la página
+        window.onload = () => {
+            for (let i = 0; i < 10; i++) {
+                crearCorazon();
+            }
+        };
+    </script>
+</body>
+</html>
